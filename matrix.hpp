@@ -12,6 +12,7 @@
 #include <array>
 #include <utility>
 #include <cmath>
+#include <complex>
 
 
 /**
@@ -985,6 +986,28 @@ Matrix<T, n,(n+n)> concatenateHorizontally(
     for (std::size_t jt = n; jt < n+n; jt++)
     {
       result[it][jt] = A[it][jt-n];
+    }
+  }
+  return result;
+}
+
+/***
+ * \brief Conjugate
+ * 
+ * \param [in] Matrix A ixj
+ *
+ * \return Conjugated matrix 
+ */
+template<typename T, std::size_t i, std::size_t j>
+Matrix<std::complex<T>, i, j> conjugate(
+  const Matrix<std::complex<T>, i, j>& A)
+{
+  Matrix<std::complex<T>, i, j> result{};
+  for (std::size_t it = 0; it < i; it++)
+  {
+    for (std::size_t jt = 0; jt < j; jt++)
+    {
+      result[it][jt] = std::conj(A[it][jt]);
     }
   }
   return result;

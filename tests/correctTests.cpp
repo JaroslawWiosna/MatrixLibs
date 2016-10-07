@@ -684,6 +684,19 @@ TEST_F(MatrixTest, getminor)
   ASSERT_TRUE(compare(getminor(C,1,1), minor1x1, 0.01f));
 }
 
+TEST_F(MatrixTest, conjugate)
+{
+  std::complex<float> z1 = {1,2};
+  Matrix<std::complex<float>, 1, 1> A = z1;
+/*
+  const Matrix<std::complex<float>, 2, 2> conjA =
+  { {1,-2} , {4,-5},
+    {0,1}  , {9,0} };
+
+  ASSERT_TRUE(compare(conjugate(A), conjA, 0.01f));
+*/
+}
+
 int main(int argc, char* argv[])
 {
   ::testing::InitGoogleTest(&argc, argv);
