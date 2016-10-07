@@ -687,14 +687,22 @@ TEST_F(MatrixTest, getminor)
 TEST_F(MatrixTest, conjugate)
 {
   std::complex<float> z1 = {1,2};
-  Matrix<std::complex<float>, 1, 1> A = z1;
-/*
-  const Matrix<std::complex<float>, 2, 2> conjA =
-  { {1,-2} , {4,-5},
-    {0,1}  , {9,0} };
+  std::complex<float> z2 = {4,5};
+  std::complex<float> z3 = {0,-1};
+  std::complex<float> z4 = {9,0};
 
-  ASSERT_TRUE(compare(conjugate(A), conjA, 0.01f));
-*/
+  Matrix<std::complex<float>, 2, 2> A = { z1, z2, z3, z4};
+  Matrix<std::complex<float>, 2, 2> conjA =
+  { std::complex<float>{1,-2} , std::complex<float>{4,-5},
+    std::complex<float>{0,1}  , std::complex<float>{9,0} };
+
+  auto after = conjugate(A);
+
+  ASSERT_EQ(after[0][0],conjA[0][0]);
+  ASSERT_EQ(after[0][1],conjA[0][1]);
+  ASSERT_EQ(after[1][0],conjA[1][0]);
+  ASSERT_EQ(after[1][1],conjA[1][1]);
+
 }
 
 int main(int argc, char* argv[])
