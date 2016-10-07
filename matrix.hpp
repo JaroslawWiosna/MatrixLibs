@@ -25,7 +25,7 @@ typename Arithmetic = std::enable_if_t<
   std::is_arithmetic<T>::value
   || std::is_constructible<T,std::complex<float>>::value
   >>
-using Matrix = std::array<std::array<T, j>, i>
+using Matrix = std::array<std::array<T, j>, i>;
 
 
 /**
