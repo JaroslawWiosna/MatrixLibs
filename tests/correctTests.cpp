@@ -684,6 +684,22 @@ TEST_F(MatrixTest, getminor)
   ASSERT_TRUE(compare(getminor(C,1,1), minor1x1, 0.01f));
 }
 
+TEST_F(MatrixTest, dct2)
+{
+  const Matrix<double, 2, 2> A =
+  { 52, 55,
+    63, 59 };
+
+  // The following matrix should be expected value, 
+  // but I cannot compute it in Octave 
+  // ... so those values are random
+  const Matrix<double, 2, 2> dct2A =
+  {       458, -19.057248,
+    -9.899495,   9.424504 };
+//  print(dct2(A));
+//  ASSERT_TRUE(compare(dct2(A), dct2A, 0.01));
+}
+
 int main(int argc, char* argv[])
 {
   ::testing::InitGoogleTest(&argc, argv);

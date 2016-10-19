@@ -990,4 +990,58 @@ Matrix<T, n,(n+n)> concatenateHorizontally(
   return result;
 }
 
+/**
+ * \brief Discrete cosine transform in 2D
+ * 
+ * \param [in] Matrix A ixj
+ *
+ * \return matrix ixj with double type
+ */
+template<typename T,  std::size_t i, std::size_t j>
+Matrix<T, i, j> dct2(const Matrix<T, i, j>& A)
+{
+  Matrix<T, i, j> result{};
+  std::size_t tmp_it{};
+  for (std::size_t it = 0; it < i; it++)
+  {
+    tmp_it = 0;
+    do
+    {
+      result[it][0] += A[it][tmp_it++];
+    } while (tmp_it < j);
+    result[it][0] = result[it][0] / sqrt(i);
+    for (std::size_t jt = 1; jt < j; jt++)
+    {
+      tmp_it = 0;
+      do
+      {
+        result[it][jt] += A[it][tmp_it]*cos((3.14*jt*(2*tmp_it+1))/(2*j));
+        tmp_it++;
+      } while (tmp_it < j);
+      result[it][jt] = result[it][jt] * sqrt(2/j);
+    }
+  }
+
+  for (std::size_t it = 0; it < i; it++)
+  {
+    tmp_it = 0;
+    do
+    {
+      result[0][it] += result[tmp_it++][it];
+    } while (tmp_it < j);
+    result[0][it] = result[0][it] / sqrt(i);
+    for (std::size_t jt = 1; jt < j; jt++)
+    {
+      tmp_it = 0;
+      do
+      {
+        result[jt][it] += result[tmp_it][it]*cos((3.14*jt*(2*tmp_it+1))/(2*j));
+        tmp_it++;
+      } while (tmp_it < j);
+      result[jt][it] = result[jt][it] * sqrt(2/j);
+    }
+  }
+  return result;
+}
+
 #endif /* MATRIX_HPP_ */
