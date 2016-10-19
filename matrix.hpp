@@ -990,7 +990,7 @@ Matrix<T, n,(n+n)> concatenateHorizontally(
   return result;
 }
 
-/**
+/** EXPERIMENTAL! = It means that it won't work
  * \brief Discrete cosine transform in 2D
  * 
  * \param [in] Matrix A ixj
@@ -1015,7 +1015,8 @@ Matrix<T, i, j> dct2(const Matrix<T, i, j>& A)
       tmp_it = 0;
       do
       {
-        result[it][jt] += A[it][tmp_it]*cos((3.14*jt*(2*tmp_it+1))/(2*j));
+        result[it][jt]
+          += A[it][tmp_it]*cos((3.14*tmp_it*(2*jt+1))/(2*j));
         tmp_it++;
       } while (tmp_it < j);
       result[it][jt] = result[it][jt] * sqrt(2/j);
@@ -1035,10 +1036,55 @@ Matrix<T, i, j> dct2(const Matrix<T, i, j>& A)
       tmp_it = 0;
       do
       {
-        result[jt][it] += result[tmp_it][it]*cos((3.14*jt*(2*tmp_it+1))/(2*j));
+        result[jt][it]
+          += result[tmp_it][it]*cos((3.14*tmp_it*(2*jt+1))/(2*j));
         tmp_it++;
       } while (tmp_it < j);
       result[jt][it] = result[jt][it] * sqrt(2/j);
+    }
+  }
+  return result;
+}
+
+/** EXPERIMENTAL! = It means that it won't work
+ * \brief Inverse discrete cosine transform in 2D
+ * 
+ * \param [in] Matrix A ixj
+ *
+ * \return matrix ixj
+ */
+template<typename T,  std::size_t i, std::size_t j>
+Matrix<T, i, j> idct2(const Matrix<T, i, j>& A)
+{
+  Matrix<T, i, j> result{};
+  std::size_t tmp_it{};
+  for (std::size_t it = 0; it < i; it++)
+  {
+    for (std::size_t jt = 0; jt < j; jt++)
+    {
+      tmp_it = 0;
+      do
+      {
+        result[it][jt] += 
+          sqrt(2/j) * A[it][tmp_it]*cos((3.14*tmp_it*(2*jt+1))/(2*j));
+        tmp_it++;
+      } while (tmp_it < j);
+      result[it][jt] = A[it][0] / sqrt(j) + result[it][jt] * sqrt(2/j);
+    }
+  }
+
+  for (std::size_t it = 0; it < i; it++)
+  {
+    for (std::size_t jt = 0; jt < j; jt++)
+    {
+      tmp_it = 0;
+      do
+      {
+        result[jt][it] += 
+          sqrt(2/j) * A[tmp_it][it]*cos((3.14*tmp_it*(2*jt+1))/(2*j));
+        tmp_it++;
+      } while (tmp_it < j);
+      result[jt][it] = A[0][it] / sqrt(j) + result[jt][it] * sqrt(2/j);
     }
   }
   return result;

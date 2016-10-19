@@ -684,6 +684,7 @@ TEST_F(MatrixTest, getminor)
   ASSERT_TRUE(compare(getminor(C,1,1), minor1x1, 0.01f));
 }
 
+//experimental!
 TEST_F(MatrixTest, dct2)
 {
   const Matrix<double, 2, 2> A =
@@ -698,6 +699,8 @@ TEST_F(MatrixTest, dct2)
     -9.899495,   9.424504 };
 //  print(dct2(A));
 //  ASSERT_TRUE(compare(dct2(A), dct2A, 0.01));
+//  print(idct2(idct2(A)));
+//  ASSERT_TRUE(compare(idct2(dct2(A)), A, 0.01));
 }
 
 int main(int argc, char* argv[])
