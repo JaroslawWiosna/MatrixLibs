@@ -691,12 +691,9 @@ TEST_F(MatrixTest, dct2)
   { 52, 55,
     63, 59 };
 
-  // The following matrix should be expected value, 
-  // but I cannot compute it in Octave 
-  // ... so those values are random
   const Matrix<double, 2, 2> dct2A =
-  {       458, -19.057248,
-    -9.899495,   9.424504 };
+  { 114.5,  0.5,
+     -7.5, -3.5 };
 //  print(dct2(A));
 //  ASSERT_TRUE(compare(dct2(A), dct2A, 0.01));
 //  print(idct2(idct2(A)));
