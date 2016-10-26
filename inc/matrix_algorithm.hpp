@@ -202,6 +202,23 @@ T det(Matrix<T, n, n> data)
 
 
 /**
+ * @brief Determinant of matrix nxn using LU decom
+ *
+ * @param [in] Square Matrix A with nxn size
+ *
+ * @return Determinant of matrix A
+ */
+template<typename T, std::size_t n>
+T detLU(Matrix<T, n, n> A)
+{
+  auto LU = lu(A);
+  auto&& L = LU.first;
+  auto&& U = LU.second;
+  return (det(L) * det(U));
+}
+
+
+/**
  * @brief Minor of A - A with crossed-out i-th column and j-th row
  *
  * @param [in] Square Matrix A with nxn size

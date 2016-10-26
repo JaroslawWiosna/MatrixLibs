@@ -241,6 +241,7 @@ TEST_F(MatrixTest, det)
     1,  0, -1,  2};
 
   ASSERT_EQ(det(B4), -225);
+  ASSERT_EQ(detLU(B4), -225);
 
   const Matrix<float, 5, 5> C5 =
   {  1,    0,    2,    3,    5,
