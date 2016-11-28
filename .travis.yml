@@ -7,6 +7,7 @@ compiler:
 
 install:
     - if [ "$CXX" = "g++" ]; then export CXX="g++-6"; fi
+    - if [ "$CXX" = "clang++" ]; then export CXX="clang++"; fi
 
 addons:
     apt:
@@ -19,6 +20,8 @@ addons:
             - libgtest-dev
             - cmake
             - cmake-data
+            - clang-3.8
+            - lldb-3.8
 
         coverity_scan:
             name: MatrixLibs
