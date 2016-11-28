@@ -21,7 +21,6 @@ addons:
             - cmake
             - cmake-data
             - clang-3.8
-            - lldb-3.8
 
         coverity_scan:
             name: MatrixLibs
