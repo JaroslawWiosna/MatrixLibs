@@ -19,6 +19,7 @@ addons:
             - libgtest-dev
             - cmake
             - cmake-data
+            - clang
 
         coverity_scan:
             name: MatrixLibs

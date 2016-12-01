@@ -32,7 +32,7 @@ set(GTEST_FLAGS "-lgtest")
 set(LINK_FLAGS "-lpthread")
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-  set(COMPILE_FLAGS  "${COMPILE_FLAGS} -stdlib=libstdc++")
+  set(COMPILE_FLAGS  "${COMPILE_FLAGS} -std=gnu++11 -stdlib=libstdc++")
 endif()
 
 if(BUILD_TESTS)
